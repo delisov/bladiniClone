@@ -7,23 +7,39 @@ namespace WhisperMessage.Test
     public class ErikWhisperStringTests
     {
         private IWhisperString _erikWhisperString = new ErikWhisperString();
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
         public void ErikManipulateMessageEmptyStringThrowArgumentException()
         {
             //Arrange
             string value = "";
 
             //Act
-            string actual = _erikWhisperString.ManipulateMessage(value);
+            try
+            {
+                string actual = _erikWhisperString.ManipulateMessage(value);
+                Assert.Fail("No exception on empty string!");
+            }
+            catch (ArgumentException)
+            {
+                //OK
+            }
         }
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
         public void ErikManipulateMessageNullThrowArgumentNullException()
         {
             //Arrange
             string value = null;
 
             //Act
-            string actual = _erikWhisperString.ManipulateMessage(value);
+            try
+            {
+                string actual = _erikWhisperString.ManipulateMessage(value);
+                Assert.Fail("No exception on empty string!");
+            }
+            catch (ArgumentException ex)
+            {
+                //OK
+            }
         }
         [TestMethod]
         public void ErikManipulateMessage()
